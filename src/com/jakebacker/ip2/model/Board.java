@@ -10,4 +10,8 @@ public class Board {
 	public void addTile(Tile tile, int x, int y) {
 		tiles[y][x] = tile;
 	}
+
+	public Tile getTile(int x, int y) {
+		return tiles[y][x];
+	}
 }

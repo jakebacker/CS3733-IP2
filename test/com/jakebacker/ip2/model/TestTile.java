@@ -11,4 +11,20 @@ public class TestTile {
 		Tile tile = new Tile(3);
 		assertEquals(3, tile.value);
 	}
+
+	@Test
+	public void testX() {
+		Tile tile = new Tile(1);
+		tile.setX(5);
+
+		assertEquals(5, tile.getX());
+	}
+
+	@Test
+	public void testY() {
+		Tile tile = new Tile(2);
+		tile.setY(7);
+
+		assertEquals(7, tile.getY());
+	}
 }

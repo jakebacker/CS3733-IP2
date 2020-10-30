@@ -12,4 +12,8 @@ public class Model {
 	public void setBoard(Board board) {
 		this.board = board;
 	}
+
+	public Board getBoard() {
+		return this.board;
+	}
 }
