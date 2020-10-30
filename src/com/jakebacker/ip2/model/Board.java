@@ -1,0 +1,13 @@
+package com.jakebacker.ip2.model;
+
+public class Board {
+	Tile[][] tiles = new Tile[3][3]; // tiles[y][x]
+
+	public Board() {
+
+	}
+
+	public void addTile(Tile tile, int x, int y) {
+		tiles[y][x] = tile;
+	}
+}
