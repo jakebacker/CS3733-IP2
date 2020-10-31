@@ -8,6 +8,9 @@ public class Board {
 	}
 
 	public void addTile(Tile tile, int x, int y) {
+		tile.setX(x);
+		tile.setY(y);
+
 		tiles[y][x] = tile;
 	}
 

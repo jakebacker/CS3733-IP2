@@ -14,5 +14,7 @@ public class TestBoard {
 		board.addTile(tile, 2, 1);
 
 		assertEquals(tile, board.getTile(2, 1));
+		assertEquals(2, tile.getX());
+		assertEquals(1, tile.getY());
 	}
 }

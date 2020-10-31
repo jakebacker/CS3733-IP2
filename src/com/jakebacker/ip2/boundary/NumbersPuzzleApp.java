@@ -1,5 +1,8 @@
 package com.jakebacker.ip2.boundary;
 
+import com.jakebacker.ip2.controller.SelectTileController;
+import com.jakebacker.ip2.model.Model;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -17,6 +20,8 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
@@ -24,6 +29,10 @@ import javax.swing.border.LineBorder;
 public class NumbersPuzzleApp extends JFrame {
 
 	private JPanel contentPane;
+
+	Model model;
+
+	private final NumbersPuzzleApp me;
 
 	/**
 	 * Launch the application.
@@ -44,7 +53,10 @@ public class NumbersPuzzleApp extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NumbersPuzzleApp() {
+	public NumbersPuzzleApp(Model m) {
+		super();
+		this.model = m;
+		me = this;
 		setTitle("Numbers Puzzle Application");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 841, 500);
@@ -134,64 +146,120 @@ public class NumbersPuzzleApp extends JFrame {
 		tile11.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile11.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile11.setOpaque(true);
-		tile11.setBackground(UIManager.getColor("Button.light"));
+		tile11.setBackground(UIManager.getColor("Button.shadow"));
 		tile11.setHorizontalAlignment(SwingConstants.CENTER);
+		tile11.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile11, 0, 0);
+			}
+		});
 		board.add(tile11);
 		
 		JLabel tile12 = new JLabel("4");
 		tile12.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile12.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile12.setOpaque(true);
-		tile12.setBackground(UIManager.getColor("Button.light"));
+		tile12.setBackground(UIManager.getColor("Button.shadow"));
 		tile12.setHorizontalAlignment(SwingConstants.CENTER);
+		tile12.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile12, 1, 0);
+			}
+		});
 		board.add(tile12);
 		
 		JLabel tile13 = new JLabel("7");
 		tile13.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile13.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile13.setOpaque(true);
-		tile13.setBackground(UIManager.getColor("Button.light"));
+		tile13.setBackground(UIManager.getColor("Button.shadow"));
 		tile13.setHorizontalAlignment(SwingConstants.CENTER);
+		tile13.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile13, 2, 0);
+			}
+		});
 		board.add(tile13);
 		
 		JLabel tile21 = new JLabel("5");
 		tile21.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile21.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile21.setOpaque(true);
-		tile21.setBackground(UIManager.getColor("Button.light"));
+		tile21.setBackground(UIManager.getColor("Button.shadow"));
 		tile21.setHorizontalAlignment(SwingConstants.CENTER);
+		tile21.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile21, 0, 1);
+			}
+		});
 		board.add(tile21);
 		
 		JLabel tile22 = new JLabel("3");
 		tile22.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile22.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile22.setOpaque(true);
-		tile22.setBackground(UIManager.getColor("Button.light"));
+		tile22.setBackground(UIManager.getColor("Button.shadow"));
 		tile22.setHorizontalAlignment(SwingConstants.CENTER);
+		tile22.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile22, 1, 1);
+			}
+		});
 		board.add(tile22);
 		
 		JLabel tile23 = new JLabel("2");
 		tile23.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile23.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile23.setOpaque(true);
-		tile23.setBackground(UIManager.getColor("Button.light"));
+		tile23.setBackground(UIManager.getColor("Button.shadow"));
 		tile23.setHorizontalAlignment(SwingConstants.CENTER);
+		tile23.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile23, 2, 1);
+			}
+		});
 		board.add(tile23);
 		
 		JLabel tile31 = new JLabel("6");
 		tile31.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile31.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile31.setOpaque(true);
-		tile31.setBackground(UIManager.getColor("Button.light"));
+		tile31.setBackground(UIManager.getColor("Button.shadow"));
 		tile31.setHorizontalAlignment(SwingConstants.CENTER);
+		tile31.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile31, 0, 2);
+			}
+		});
 		board.add(tile31);
 		
 		JLabel tile32 = new JLabel("8");
 		tile32.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile32.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile32.setOpaque(true);
-		tile32.setBackground(UIManager.getColor("Button.light"));
+		tile32.setBackground(UIManager.getColor("Button.shadow"));
 		tile32.setHorizontalAlignment(SwingConstants.CENTER);
+		tile32.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile32, 1, 2);
+			}
+		});
 		board.add(tile32);
 		
 		JLabel tile33 = new JLabel("9");
@@ -199,8 +267,16 @@ public class NumbersPuzzleApp extends JFrame {
 		tile33.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile33.setOpaque(true);
 		tile33.setHorizontalAlignment(SwingConstants.CENTER);
-		tile33.setBackground(UIManager.getColor("Button.light"));
+		tile33.setBackground(UIManager.getColor("Button.shadow"));
+		tile33.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				new SelectTileController(model, me).process(tile33, 2, 2);
+			}
+		});
 		board.add(tile33);
+
 		contentPane.setLayout(gl_contentPane);
 	}
 }
