@@ -16,11 +16,21 @@ public class TestSelectTileController {
 	public void testProcess() {
 		Model model = new Model();
 		Board board = new Board();
-		Tile t = new Tile(4);
-		Tile t2 = new Tile(5);
 
-		board.addTile(t, 1, 2);
-		board.addTile(t2, 2, 2);
+
+		board.addTile(new Tile(3), 0, 0);
+		board.addTile(new Tile(6), 1, 0);
+		board.addTile(new Tile(4), 2, 0);
+
+		board.addTile(new Tile(1), 0, 1);
+		board.addTile(new Tile(7), 1, 1);
+		board.addTile(new Tile(9), 2, 1);
+
+		board.addTile(new Tile(2), 0, 2);
+		board.addTile(new Tile(5), 1, 2);
+
+		Tile t = new Tile(8);
+		board.addTile(t, 2, 2);
 
 		model.setBoard(board);
 
@@ -35,7 +45,7 @@ public class TestSelectTileController {
 
 		assertEquals(label2.getBackground(), Model.SELECTED_COLOR);
 		assertEquals(label.getBackground(), Model.NORMAL_COLOR);
-		assertEquals(model.getSelectedTile(), t2);
+		assertEquals(model.getSelectedTile(), t);
 		assertEquals(model.getSelectedLabel(), label2);
 	}
 }
