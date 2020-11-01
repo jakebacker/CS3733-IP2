@@ -55,7 +55,7 @@ public class NumbersPuzzleApp extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JPanel board = new JPanel();
+		PuzzlePanel board = new PuzzlePanel(model);
 		
 		JButton btnReset = new JButton("Reset");
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -88,7 +88,7 @@ public class NumbersPuzzleApp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		JLabel lblWinloseMessage = new JLabel("");
 		lblWinloseMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -142,7 +142,7 @@ public class NumbersPuzzleApp extends JFrame {
 		);
 		board.setLayout(new GridLayout(3, 3, 0, 0));
 		
-		JLabel tile11 = new JLabel("1");
+		JLabel tile11 = new JLabel(String.valueOf(model.getBoard().getTile(0, 0).getValue()));
 		tile11.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile11.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile11.setOpaque(true);
@@ -156,8 +156,9 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile11);
+		board.addLabel(tile11, 0, 0);
 		
-		JLabel tile12 = new JLabel("4");
+		JLabel tile12 = new JLabel(String.valueOf(model.getBoard().getTile(1, 0).getValue()));
 		tile12.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile12.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile12.setOpaque(true);
@@ -171,8 +172,9 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile12);
+		board.addLabel(tile12, 1, 0);
 		
-		JLabel tile13 = new JLabel("7");
+		JLabel tile13 = new JLabel(String.valueOf(model.getBoard().getTile(2, 0).getValue()));
 		tile13.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile13.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile13.setOpaque(true);
@@ -186,8 +188,9 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile13);
+		board.addLabel(tile13, 2, 0);
 		
-		JLabel tile21 = new JLabel("5");
+		JLabel tile21 = new JLabel(String.valueOf(model.getBoard().getTile(0, 1).getValue()));
 		tile21.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile21.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile21.setOpaque(true);
@@ -201,8 +204,9 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile21);
+		board.addLabel(tile21, 0, 1);
 		
-		JLabel tile22 = new JLabel("3");
+		JLabel tile22 = new JLabel(String.valueOf(model.getBoard().getTile(1, 1).getValue()));
 		tile22.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile22.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile22.setOpaque(true);
@@ -216,8 +220,9 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile22);
-		
-		JLabel tile23 = new JLabel("2");
+		board.addLabel(tile22, 1, 1);
+
+		JLabel tile23 = new JLabel(String.valueOf(model.getBoard().getTile(2, 1).getValue()));
 		tile23.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile23.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile23.setOpaque(true);
@@ -231,8 +236,9 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile23);
+		board.addLabel(tile23, 2, 1);
 		
-		JLabel tile31 = new JLabel("6");
+		JLabel tile31 = new JLabel(String.valueOf(model.getBoard().getTile(0, 2).getValue()));
 		tile31.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile31.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile31.setOpaque(true);
@@ -246,8 +252,9 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile31);
+		board.addLabel(tile31, 0, 2);
 		
-		JLabel tile32 = new JLabel("8");
+		JLabel tile32 = new JLabel(String.valueOf(model.getBoard().getTile(1, 2).getValue()));
 		tile32.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile32.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile32.setOpaque(true);
@@ -261,8 +268,9 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile32);
-		
-		JLabel tile33 = new JLabel("9");
+		board.addLabel(tile32, 1, 2);
+
+		JLabel tile33 = new JLabel(String.valueOf(model.getBoard().getTile(2, 2).getValue()));
 		tile33.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tile33.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tile33.setOpaque(true);
@@ -276,7 +284,10 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 		board.add(tile33);
+		board.addLabel(tile33, 2, 2);
 
 		contentPane.setLayout(gl_contentPane);
 	}
+
+
 }

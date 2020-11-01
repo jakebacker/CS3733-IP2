@@ -19,11 +19,18 @@ public class TestUpdateButtons {
 	public void testEnableButtons() {
 		Model model = new Model();
 		Board board = new Board();
-		Tile t = new Tile(4);
-		Tile t2 = new Tile(5);
 
-		board.addTile(t, 1, 2);
-		board.addTile(t2, 2, 2);
+		board.addTile(new Tile(3), 0, 0);
+		board.addTile(new Tile(6), 1, 0);
+		board.addTile(new Tile(4), 2, 0);
+
+		board.addTile(new Tile(1), 0, 1);
+		board.addTile(new Tile(7), 1, 1);
+		board.addTile(new Tile(9), 2, 1);
+
+		board.addTile(new Tile(2), 0, 2);
+		board.addTile(new Tile(5), 1, 2);
+		board.addTile(new Tile(8), 2, 2);
 
 		model.setBoard(board);
 
