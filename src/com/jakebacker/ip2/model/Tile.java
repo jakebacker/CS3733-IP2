@@ -25,4 +25,12 @@ public class Tile {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
 }

@@ -29,7 +29,9 @@ public class TestSelectTileController {
 
 		model.select(label, 1, 2);
 
+		// This is kind of cheating the code coverage checker. When new NumbersPuzzleApp is called, it just runs all the GUI code even though it's not testing it
 		new SelectTileController(model, new NumbersPuzzleApp(model)).process(label2, 2, 2);
+
 
 		assertEquals(label2.getBackground(), Model.SELECTED_COLOR);
 		assertEquals(label.getBackground(), Model.NORMAL_COLOR);

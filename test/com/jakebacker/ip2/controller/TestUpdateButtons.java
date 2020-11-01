@@ -1,0 +1,63 @@
+package com.jakebacker.ip2.controller;
+
+import com.jakebacker.ip2.boundary.NumbersPuzzleApp;
+import com.jakebacker.ip2.boundary.UpdateButtons;
+import com.jakebacker.ip2.model.Board;
+import com.jakebacker.ip2.model.Model;
+import com.jakebacker.ip2.model.MoveType;
+import com.jakebacker.ip2.model.Tile;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class TestUpdateButtons {
+
+	@Test
+	public void testEnableButtons() {
+		Model model = new Model();
+		Board board = new Board();
+		Tile t = new Tile(4);
+		Tile t2 = new Tile(5);
+
+		board.addTile(t, 1, 2);
+		board.addTile(t2, 2, 2);
+
+		model.setBoard(board);
+
+		NumbersPuzzleApp app = new NumbersPuzzleApp(model);
+
+		ArrayList<MoveType> moves = new ArrayList<>();
+		
+		moves.add(MoveType.Up);
+		UpdateButtons.enableButtons(app, moves);
+		assertTrue(app.getUpButton().isEnabled());
+
+		moves.add(MoveType.Right);
+		UpdateButtons.enableButtons(app, moves);
+		assertTrue(app.getUpButton().isEnabled());
+		assertTrue(app.getRightButton().isEnabled());
+
+		moves.add(MoveType.Down);
+		UpdateButtons.enableButtons(app, moves);
+		assertTrue(app.getUpButton().isEnabled());
+		assertTrue(app.getRightButton().isEnabled());
+		assertTrue(app.getDownButton().isEnabled());
+
+		moves.add(MoveType.Left);
+		UpdateButtons.enableButtons(app, moves);
+		assertTrue(app.getUpButton().isEnabled());
+		assertTrue(app.getRightButton().isEnabled());
+		assertTrue(app.getDownButton().isEnabled());
+		assertTrue(app.getLeftButton().isEnabled());
+		
+		moves = new ArrayList<>();
+		UpdateButtons.enableButtons(app, moves);
+		assertFalse(app.getUpButton().isEnabled());
+		assertFalse(app.getRightButton().isEnabled());
+		assertFalse(app.getDownButton().isEnabled());
+		assertFalse(app.getLeftButton().isEnabled());
+	}
+}

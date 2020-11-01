@@ -34,21 +34,12 @@ public class NumbersPuzzleApp extends JFrame {
 
 	private final NumbersPuzzleApp me;
 
-	/**
-	 * Launch the application.
-	 */
-/*	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NumbersPuzzleApp frame = new NumbersPuzzleApp();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	JButton btnUp, btnDown, btnRight, btnLeft, btnReset;
+
+	public JButton getUpButton() { return btnUp; }
+	public JButton getDownButton() { return btnDown; }
+	public JButton getLeftButton() { return btnLeft; }
+	public JButton getRightButton() { return btnRight; }
 
 	/**
 	 * Create the frame.
@@ -69,22 +60,31 @@ public class NumbersPuzzleApp extends JFrame {
 		JButton btnReset = new JButton("Reset");
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JButton btnUp = new JButton("^");
+		btnUp = new JButton("^");
+		btnUp.setEnabled(false);
 		btnUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton btnDown = new JButton("v");
+		btnDown = new JButton("v");
+		btnDown.setEnabled(false);
+		btnDown.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
-		JButton btnLeft = new JButton("<");
+		btnLeft = new JButton("<");
+		btnLeft.setEnabled(false);
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JButton buttonRight = new JButton(">");
-		buttonRight.addActionListener(new ActionListener() {
+		btnRight = new JButton(">");
+		btnRight.setEnabled(false);
+		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
@@ -103,7 +103,7 @@ public class NumbersPuzzleApp extends JFrame {
 									.addGap(155)
 									.addComponent(btnLeft, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
 									.addGap(38)
-									.addComponent(buttonRight, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+									.addComponent(btnRight, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(195)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -131,7 +131,7 @@ public class NumbersPuzzleApp extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnLeft)
-								.addComponent(buttonRight))
+								.addComponent(btnRight))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnDown)
 							.addGap(84)

@@ -12,6 +12,7 @@ public class Board {
 		tile.setY(y);
 
 		tiles[y][x] = tile;
+
 	}
 
 	public Tile getTile(int x, int y) {

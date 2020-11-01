@@ -9,7 +9,7 @@ public class TestTile {
 	@Test
 	public void testConstruction() {
 		Tile tile = new Tile(3);
-		assertEquals(3, tile.value);
+		assertEquals(3, tile.getValue());
 	}
 
 	@Test
@@ -26,5 +26,13 @@ public class TestTile {
 		tile.setY(7);
 
 		assertEquals(7, tile.getY());
+	}
+
+	@Test
+	public void testValue() {
+		Tile tile = new Tile(4);
+		tile.setValue(5);
+
+		assertEquals(5, tile.getValue());
 	}
 }
