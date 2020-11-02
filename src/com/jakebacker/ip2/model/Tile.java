@@ -33,4 +33,12 @@ public class Tile {
 	public void setValue(int value) {
 		this.value = value;
 	}
+
+	public Tile deepCopy() {
+		Tile copy = new Tile(value);
+		copy.x = x;
+		copy.y = y;
+
+		return copy;
+	}
 }

@@ -24,6 +24,8 @@ public class Main {
 		board.addTile(new Tile(5), 1, 2);
 		board.addTile(new Tile(8), 2, 2);
 
+		board.save();
+
 		m.setBoard(board);
 
 		NumbersPuzzleApp app = new NumbersPuzzleApp(m);

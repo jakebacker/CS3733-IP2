@@ -1,12 +1,10 @@
 package com.jakebacker.ip2.boundary;
 
 import com.jakebacker.ip2.controller.MoveTileController;
+import com.jakebacker.ip2.controller.ResetTileController;
 import com.jakebacker.ip2.controller.SelectTileController;
 import com.jakebacker.ip2.model.Model;
 import com.jakebacker.ip2.model.MoveType;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -61,6 +59,12 @@ public class NumbersPuzzleApp extends JFrame {
 		
 		JButton btnReset = new JButton("Reset");
 		btnReset.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ResetTileController(model, me).reset();
+			}
+		});
 		
 		btnUp = new JButton("^");
 		btnUp.setEnabled(false);
