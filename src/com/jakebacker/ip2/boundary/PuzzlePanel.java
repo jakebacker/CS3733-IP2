@@ -32,10 +32,11 @@ public class PuzzlePanel extends JPanel {
 
 				if (value >= 0) {
 					lblStr = String.valueOf(value);
+				} else {
+					labels[y][x].setBackground(Model.EMPTY_COLOR);
 				}
 
 				labels[y][x].setText(lblStr);
-
 			}
 		}
 	}

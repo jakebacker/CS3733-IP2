@@ -29,7 +29,9 @@ public class Model {
 	}
 
 	public void select(JLabel selectedLabel, int x, int y) {
-		selectedTile = board.getTile(x, y);
+		Tile tempTile = board.getTile(x, y);
+		if (tempTile.getValue() < 0) return; // Don't select an empty tile
+		selectedTile = tempTile;
 		if (selectedLabel != null) {selectedLabel.setBackground(NORMAL_COLOR);}
 		this.selectedLabel = selectedLabel;
 		this.selectedLabel.setBackground(SELECTED_COLOR);
@@ -107,5 +109,47 @@ public class Model {
 		}
 
 		return moves;
+	}
+
+	public boolean tryMove(MoveType dir) {
+		if (selectedTile == null) { return false; }
+
+		for (MoveType move : availableMoves()) {
+			if (move == dir) {
+				// The move is valid. Make it
+				// Get the piece you are moving into, perform the math, update it's value, clear the current piece
+
+				int x = selectedTile.x + dir.deltaX;
+				int y = selectedTile.y + dir.deltaY;
+
+				Tile other = board.getTile(x, y);
+
+				int otherVal = other.value;
+				int thisVal = selectedTile.value;
+
+				switch (dir) {
+					case Up:
+						otherVal = otherVal * thisVal;
+						break;
+					case Right:
+						otherVal = otherVal + thisVal;
+						break;
+					case Down:
+						otherVal = otherVal / thisVal;
+						break;
+					case Left:
+						otherVal = otherVal - thisVal;
+						break;
+				}
+
+				other.setValue(otherVal);
+				selectedTile.setValue(-1);
+				clearSelectedTile();
+
+				return true;
+			}
+		}
+
+		return true;
 	}
 }

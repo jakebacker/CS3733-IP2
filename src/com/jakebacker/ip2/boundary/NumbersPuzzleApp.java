@@ -1,7 +1,9 @@
 package com.jakebacker.ip2.boundary;
 
+import com.jakebacker.ip2.controller.MoveTileController;
 import com.jakebacker.ip2.controller.SelectTileController;
 import com.jakebacker.ip2.model.Model;
+import com.jakebacker.ip2.model.MoveType;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -64,6 +66,7 @@ public class NumbersPuzzleApp extends JFrame {
 		btnUp.setEnabled(false);
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new MoveTileController(model, me).move(MoveType.Up);
 			}
 		});
 		
@@ -72,6 +75,7 @@ public class NumbersPuzzleApp extends JFrame {
 		btnDown.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new MoveTileController(model, me).move(MoveType.Down);
 			}
 		});
 		
@@ -79,6 +83,7 @@ public class NumbersPuzzleApp extends JFrame {
 		btnLeft.setEnabled(false);
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new MoveTileController(model, me).move(MoveType.Left);
 			}
 		});
 		
@@ -86,6 +91,7 @@ public class NumbersPuzzleApp extends JFrame {
 		btnRight.setEnabled(false);
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new MoveTileController(model, me).move(MoveType.Right);
 			}
 		});
 
