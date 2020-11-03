@@ -1,4 +1,4 @@
-package com.jakebacker.ip2.controller;
+package com.jakebacker.ip2.boundary;
 
 import com.jakebacker.ip2.boundary.NumbersPuzzleApp;
 import com.jakebacker.ip2.boundary.UpdateButtons;

@@ -17,7 +17,6 @@ public class TestSelectTileController {
 		Model model = new Model();
 		Board board = new Board();
 
-
 		board.addTile(new Tile(3), 0, 0);
 		board.addTile(new Tile(6), 1, 0);
 		board.addTile(new Tile(4), 2, 0);

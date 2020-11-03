@@ -158,7 +158,7 @@ public class Model {
 			}
 		}
 
-		return true;
+		return false;
 	}
 
 	public boolean checkGameOver() {

@@ -93,6 +93,32 @@ public class TestModel {
 	}
 
 	@Test
+	public void testAvailableMovesEmpty() {
+		Model model = new Model();
+		Board board = new Board();
+
+		board.addTile(new Tile(-1), 0, 0);
+		board.addTile(new Tile(6), 1, 0);
+		board.addTile(new Tile(4), 2, 0);
+
+		board.addTile(new Tile(1), 0, 1);
+		board.addTile(new Tile(7), 1, 1);
+		board.addTile(new Tile(9), 2, 1);
+
+		board.addTile(new Tile(2), 0, 2);
+		board.addTile(new Tile(5), 1, 2);
+		board.addTile(new Tile(8), 2, 2);
+
+		model.setBoard(board);
+
+		model.selectedTile = model.board.getTile(0, 0);
+
+		List<MoveType> moves = model.availableMoves();
+
+		assertEquals(0, moves.size());
+	}
+
+	@Test
 	public void testAvailableMoves() {
 
 		Model model = new Model();
@@ -182,5 +208,123 @@ public class TestModel {
 		assertEquals(2, moves.size());
 		assertTrue(moves.contains(MoveType.Up));
 		assertTrue(moves.contains(MoveType.Right));
+	}
+
+	@Test
+	public void testTryMove() {
+		Model model = new Model();
+		Board board = new Board();
+
+		board.addTile(new Tile(3), 0, 0);
+		board.addTile(new Tile(6), 1, 0);
+		board.addTile(new Tile(4), 2, 0);
+
+		board.addTile(new Tile(1), 0, 1);
+		board.addTile(new Tile(7), 1, 1);
+		board.addTile(new Tile(9), 2, 1);
+
+		board.addTile(new Tile(2), 0, 2);
+		board.addTile(new Tile(5), 1, 2);
+		board.addTile(new Tile(8), 2, 2);
+
+		model.setBoard(board);
+
+		JLabel dummyLabel = new JLabel("a");
+
+		assertFalse(model.tryMove(MoveType.Right));
+
+		model.select(dummyLabel, 0, 0);
+		assertFalse(model.tryMove(MoveType.Left));
+
+		assertTrue(model.tryMove(MoveType.Right));
+		assertTrue(board.tiles[0][0].value <= -1);
+		assertEquals(9, board.tiles[0][1].value);
+
+		model.select(dummyLabel, 0, 2);
+		assertTrue(model.tryMove(MoveType.Up));
+		assertTrue(board.tiles[2][0].value <= -1);
+		assertEquals(2, board.tiles[1][0].value);
+
+		model.select(dummyLabel, 0, 1);
+		assertTrue(model.tryMove(MoveType.Right));
+		assertTrue(board.tiles[1][0].value <= -1);
+		assertEquals(9, board.tiles[1][1].value);
+
+		model.select(dummyLabel, 1, 2);
+		assertTrue(model.tryMove(MoveType.Up));
+		assertTrue(board.tiles[2][1].value <= -1);
+		assertEquals(45, board.tiles[1][1].value);
+
+		model.select(dummyLabel, 2, 2);
+		assertTrue(model.tryMove(MoveType.Up));
+		assertTrue(board.tiles[2][2].value <= -1);
+		assertEquals(72, board.tiles[1][2].value);
+
+		model.select(dummyLabel, 2, 0);
+		assertTrue(model.tryMove(MoveType.Down));
+		assertTrue(board.tiles[0][2].value <= -1);
+		assertEquals(18, board.tiles[1][2].value);
+
+		model.select(dummyLabel, 2, 1);
+		assertTrue(model.tryMove(MoveType.Left));
+		assertTrue(board.tiles[1][2].value <= -1);
+		assertEquals(27, board.tiles[1][1].value);
+	}
+
+	@Test
+	public void testCheckGameOver() {
+		Model model = new Model();
+		Board board = new Board();
+
+		board.addTile(new Tile(3), 0, 0);
+		board.addTile(new Tile(-1), 1, 0);
+		board.addTile(new Tile(4), 2, 0);
+
+		board.addTile(new Tile(-1), 0, 1);
+		board.addTile(new Tile(7), 1, 1);
+		board.addTile(new Tile(-1), 2, 1);
+
+		board.addTile(new Tile(2), 0, 2);
+		board.addTile(new Tile(-1), 1, 2);
+		board.addTile(new Tile(8), 2, 2);
+
+		model.setBoard(board);
+
+		assertTrue(model.checkGameOver());
+
+		board.addTile(new Tile(6), 1, 0);
+
+		board.addTile(new Tile(1), 0, 1);
+		board.addTile(new Tile(9), 2, 1);
+		board.addTile(new Tile(5), 1, 2);
+
+		assertFalse(model.checkGameOver());
+	}
+
+	@Test
+	public void testCheckGameWin() {
+		Model model = new Model();
+		Board board = new Board();
+
+		board.addTile(new Tile(-1), 0, 0);
+		board.addTile(new Tile(-1), 1, 0);
+		board.addTile(new Tile(-1), 2, 0);
+
+		board.addTile(new Tile(-1), 0, 1);
+		board.addTile(new Tile(7), 1, 1);
+		board.addTile(new Tile(-1), 2, 1);
+
+		board.addTile(new Tile(-1), 0, 2);
+		board.addTile(new Tile(-1), 1, 2);
+		board.addTile(new Tile(-1), 2, 2);
+
+		model.setBoard(board);
+
+		assertTrue(model.checkGameWin());
+
+		board.addTile(new Tile(-1), 1, 1);
+		board.addTile(new Tile(7), 0, 0);
+
+		assertFalse(model.checkGameWin());
 	}
 }
