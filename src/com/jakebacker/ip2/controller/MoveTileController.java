@@ -18,10 +18,24 @@ public class MoveTileController {
 	public boolean move(MoveType dir) {
 		if (model.getSelectedTile() == null) { return false; }
 
-		if (model.isGameOver()) { return false; }
+		if (model.isGameOver()) {
+			return false;
+		}
 
 		if (model.tryMove(dir)) {
 			UpdateButtons.enableButtons(app, model.availableMoves());
+
+			if (model.checkGameOver()) {
+				// Game is over. Check for win
+				model.setGameOver(true);
+				if (model.checkGameWin()) {
+					// Win!
+					app.getWinLabel().setText(Model.WIN_MESSAGE);
+				} else {
+					// Lose!
+					app.getWinLabel().setText(Model.LOSE_MESSAGE);
+				}
+			}
 
 			app.repaint();
 		}

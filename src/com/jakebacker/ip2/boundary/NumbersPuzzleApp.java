@@ -36,10 +36,13 @@ public class NumbersPuzzleApp extends JFrame {
 
 	JButton btnUp, btnDown, btnRight, btnLeft, btnReset;
 
+	JLabel lblWinloseMessage;
+
 	public JButton getUpButton() { return btnUp; }
 	public JButton getDownButton() { return btnDown; }
 	public JButton getLeftButton() { return btnLeft; }
 	public JButton getRightButton() { return btnRight; }
+	public JLabel getWinLabel() {return lblWinloseMessage;}
 
 	/**
 	 * Create the frame.
@@ -99,7 +102,7 @@ public class NumbersPuzzleApp extends JFrame {
 			}
 		});
 
-		JLabel lblWinloseMessage = new JLabel("");
+		lblWinloseMessage = new JLabel("");
 		lblWinloseMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

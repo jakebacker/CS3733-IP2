@@ -34,12 +34,28 @@ public class PuzzlePanel extends JPanel {
 			selY = t.getY();
 		}
 
+		boolean gameWon = false;
+
+		if (model.checkGameOver()) {
+			if (model.checkGameWin()) {
+				gameWon = true;
+			}
+		}
 
 		for (int y=0; y<3; y++) {
 			for (int x=0; x<3; x++) {
 				int value = model.getBoard().getTile(x, y).getValue();
 
 				String lblStr = "";
+
+
+				if (gameWon) {
+					if (y==1 && x==1) {
+						labels[y][x].setBackground(Model.WIN_COLOR);
+						continue;
+					}
+				}
+
 
 				if (value >= 0) {
 					lblStr = String.valueOf(value);

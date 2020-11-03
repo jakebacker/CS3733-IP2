@@ -16,7 +16,9 @@ public class ResetTileController {
 
 	public void reset() {
 		model.getBoard().reset();
+		app.getWinLabel().setText("");
 		model.clearSelectedTile();
+		model.setGameOver(false);
 		UpdateButtons.enableButtons(app, model.availableMoves());
 
 		app.repaint();

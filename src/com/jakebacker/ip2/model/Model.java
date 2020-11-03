@@ -10,6 +10,10 @@ public class Model {
 	public static final Color NORMAL_COLOR = UIManager.getColor("Button.shadow");
 	public static final Color SELECTED_COLOR = UIManager.getColor("Button.highlight");
 	public static final Color EMPTY_COLOR = UIManager.getColor("Button.darkShadow");
+	public static final Color WIN_COLOR = Color.GREEN;
+
+	public static final String WIN_MESSAGE = "Congratulations! You win!";
+	public static final String LOSE_MESSAGE = "You lost. Better luck next time!";
 
 	Board board;
 	Tile selectedTile;
@@ -69,6 +73,10 @@ public class Model {
 		// For a move to be valid, it must be on the board and must result in a non-negative integer
 
 		ArrayList<MoveType> moves = new ArrayList<>();
+
+		if (tile.getValue() < 0) {
+			return moves;
+		}
 
 		int tileX = tile.getX();
 		int tileY = tile.getY();
@@ -151,5 +159,38 @@ public class Model {
 		}
 
 		return true;
+	}
+
+	public boolean checkGameOver() {
+		for (int y=0; y<3; y++) {
+			for (int x = 0; x < 3; x++) {
+				Tile t = board.getTile(x, y);
+
+				List<MoveType> moves = availableMoves(t);
+				if (moves.size() > 0) return false; // If there's a valid move anywhere, it's not over
+			}
+		}
+
+		return true;
+	}
+
+	public boolean checkGameWin() {
+		boolean middleFilled = false;
+
+		for (int y=0 ; y<3; y++) {
+			for (int x=0; x<3; x++) {
+				Tile t = board.getTile(x, y);
+
+				if (t.getValue() > 0) {
+					if (y == 1 && x == 1) {
+						middleFilled = true;
+					} else {
+						middleFilled = false; // Double check to make sure that nothing else is filled
+					}
+				}
+			}
+		}
+
+		return middleFilled;
 	}
 }
