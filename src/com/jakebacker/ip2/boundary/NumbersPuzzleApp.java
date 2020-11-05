@@ -18,7 +18,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
-import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -71,36 +70,19 @@ public class NumbersPuzzleApp extends JFrame {
 		
 		btnUp = new JButton("^");
 		btnUp.setEnabled(false);
-		btnUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new MoveTileController(model, me).move(MoveType.Up);
-			}
-		});
+		btnUp.addActionListener(e -> new MoveTileController(model, me).move(MoveType.Up));
 		
 		btnDown = new JButton("v");
 		btnDown.setEnabled(false);
-		btnDown.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new MoveTileController(model, me).move(MoveType.Down);
-			}
-		});
+		btnDown.addActionListener(e -> new MoveTileController(model, me).move(MoveType.Down));
 		
 		btnLeft = new JButton("<");
 		btnLeft.setEnabled(false);
-		btnLeft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new MoveTileController(model, me).move(MoveType.Left);
-			}
-		});
+		btnLeft.addActionListener(e -> new MoveTileController(model, me).move(MoveType.Left));
 		
 		btnRight = new JButton(">");
 		btnRight.setEnabled(false);
-		btnRight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new MoveTileController(model, me).move(MoveType.Right);
-			}
-		});
+		btnRight.addActionListener(e -> new MoveTileController(model, me).move(MoveType.Right));
 
 		lblWinloseMessage = new JLabel("");
 		lblWinloseMessage.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -301,6 +283,4 @@ public class NumbersPuzzleApp extends JFrame {
 
 		contentPane.setLayout(gl_contentPane);
 	}
-
-
 }

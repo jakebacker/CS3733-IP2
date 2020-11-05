@@ -1,7 +1,5 @@
 package com.jakebacker.ip2.boundary;
 
-import com.jakebacker.ip2.boundary.NumbersPuzzleApp;
-import com.jakebacker.ip2.boundary.UpdateButtons;
 import com.jakebacker.ip2.model.Board;
 import com.jakebacker.ip2.model.Model;
 import com.jakebacker.ip2.model.MoveType;

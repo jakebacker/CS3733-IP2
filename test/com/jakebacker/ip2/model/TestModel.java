@@ -1,5 +1,7 @@
 package com.jakebacker.ip2.model;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
@@ -10,25 +12,45 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestModel {
 
-	@Test
-	public void testSetBoard() {
-		Model model = new Model();
-		Board board = new Board();
+	static Model model;
+	static Board board;
+	
+	@BeforeAll
+	static void beforeAll() {
+		model = new Model();
+		board = new Board();
 
 		model.setBoard(board);
+	}
 
+	@BeforeEach
+	public void beforeEach() {
+		board.addTile(new Tile(3), 0, 0);
+		board.addTile(new Tile(6), 1, 0);
+		board.addTile(new Tile(4), 2, 0);
+
+		board.addTile(new Tile(1), 0, 1);
+		board.addTile(new Tile(7), 1, 1);
+		board.addTile(new Tile(9), 2, 1);
+
+		board.addTile(new Tile(2), 0, 2);
+		board.addTile(new Tile(5), 1, 2);
+		board.addTile(new Tile(8), 2, 2);
+
+		model.setGameOver(false);
+		model.clearSelectedTile();
+	}
+	
+	@Test
+	public void testSetBoard() {
 		assertEquals(board, model.getBoard());
 	}
 
 	@Test
 	public void testSelect() {
-		Model model = new Model();
-		Board board = new Board();
 		Tile t = new Tile(4);
 
 		board.addTile(t, 1, 2);
-
-		model.setBoard(board);
 
 		JLabel label = new JLabel("a");
 
@@ -41,13 +63,9 @@ public class TestModel {
 
 	@Test
 	public void testClear() {
-		Model model = new Model();
-		Board board = new Board();
 		Tile t = new Tile(4);
 
 		board.addTile(t, 1, 2);
-
-		model.setBoard(board);
 
 		JLabel label = new JLabel("a");
 
@@ -61,8 +79,6 @@ public class TestModel {
 
 	@Test
 	public void testGameOver() {
-		Model model = new Model();
-
 		model.setGameOver(true);
 
 		assertTrue(model.isGameOver());
@@ -70,23 +86,6 @@ public class TestModel {
 
 	@Test
 	public void testAvailableMovesNull() {
-		Model model = new Model();
-		Board board = new Board();
-
-		board.addTile(new Tile(3), 0, 0);
-		board.addTile(new Tile(6), 1, 0);
-		board.addTile(new Tile(4), 2, 0);
-
-		board.addTile(new Tile(1), 0, 1);
-		board.addTile(new Tile(7), 1, 1);
-		board.addTile(new Tile(9), 2, 1);
-
-		board.addTile(new Tile(2), 0, 2);
-		board.addTile(new Tile(5), 1, 2);
-		board.addTile(new Tile(8), 2, 2);
-
-		model.setBoard(board);
-
 		List<MoveType> moves = model.availableMoves();
 
 		assertEquals(0, moves.size());
@@ -94,22 +93,8 @@ public class TestModel {
 
 	@Test
 	public void testAvailableMovesEmpty() {
-		Model model = new Model();
-		Board board = new Board();
 
 		board.addTile(new Tile(-1), 0, 0);
-		board.addTile(new Tile(6), 1, 0);
-		board.addTile(new Tile(4), 2, 0);
-
-		board.addTile(new Tile(1), 0, 1);
-		board.addTile(new Tile(7), 1, 1);
-		board.addTile(new Tile(9), 2, 1);
-
-		board.addTile(new Tile(2), 0, 2);
-		board.addTile(new Tile(5), 1, 2);
-		board.addTile(new Tile(8), 2, 2);
-
-		model.setBoard(board);
 
 		model.selectedTile = model.board.getTile(0, 0);
 
@@ -120,24 +105,6 @@ public class TestModel {
 
 	@Test
 	public void testAvailableMoves() {
-
-		Model model = new Model();
-		Board board = new Board();
-
-		board.addTile(new Tile(3), 0, 0);
-		board.addTile(new Tile(6), 1, 0);
-		board.addTile(new Tile(4), 2, 0);
-
-		board.addTile(new Tile(1), 0, 1);
-		board.addTile(new Tile(7), 1, 1);
-		board.addTile(new Tile(9), 2, 1);
-
-		board.addTile(new Tile(2), 0, 2);
-		board.addTile(new Tile(5), 1, 2);
-		board.addTile(new Tile(8), 2, 2);
-
-		model.setBoard(board);
-
 		JLabel dummyLabel = new JLabel("a");
 
 
@@ -212,23 +179,6 @@ public class TestModel {
 
 	@Test
 	public void testTryMove() {
-		Model model = new Model();
-		Board board = new Board();
-
-		board.addTile(new Tile(3), 0, 0);
-		board.addTile(new Tile(6), 1, 0);
-		board.addTile(new Tile(4), 2, 0);
-
-		board.addTile(new Tile(1), 0, 1);
-		board.addTile(new Tile(7), 1, 1);
-		board.addTile(new Tile(9), 2, 1);
-
-		board.addTile(new Tile(2), 0, 2);
-		board.addTile(new Tile(5), 1, 2);
-		board.addTile(new Tile(8), 2, 2);
-
-		model.setBoard(board);
-
 		JLabel dummyLabel = new JLabel("a");
 
 		assertFalse(model.tryMove(MoveType.Right));
@@ -273,22 +223,12 @@ public class TestModel {
 
 	@Test
 	public void testCheckGameOver() {
-		Model model = new Model();
-		Board board = new Board();
-
-		board.addTile(new Tile(3), 0, 0);
 		board.addTile(new Tile(-1), 1, 0);
-		board.addTile(new Tile(4), 2, 0);
 
 		board.addTile(new Tile(-1), 0, 1);
-		board.addTile(new Tile(7), 1, 1);
 		board.addTile(new Tile(-1), 2, 1);
 
-		board.addTile(new Tile(2), 0, 2);
 		board.addTile(new Tile(-1), 1, 2);
-		board.addTile(new Tile(8), 2, 2);
-
-		model.setBoard(board);
 
 		assertTrue(model.checkGameOver());
 
@@ -303,22 +243,17 @@ public class TestModel {
 
 	@Test
 	public void testCheckGameWin() {
-		Model model = new Model();
-		Board board = new Board();
 
 		board.addTile(new Tile(-1), 0, 0);
 		board.addTile(new Tile(-1), 1, 0);
 		board.addTile(new Tile(-1), 2, 0);
 
 		board.addTile(new Tile(-1), 0, 1);
-		board.addTile(new Tile(7), 1, 1);
 		board.addTile(new Tile(-1), 2, 1);
 
 		board.addTile(new Tile(-1), 0, 2);
 		board.addTile(new Tile(-1), 1, 2);
 		board.addTile(new Tile(-1), 2, 2);
-
-		model.setBoard(board);
 
 		assertTrue(model.checkGameWin());
 

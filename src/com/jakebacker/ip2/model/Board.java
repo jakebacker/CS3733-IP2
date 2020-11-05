@@ -1,6 +1,5 @@
 package com.jakebacker.ip2.model;
 
-import java.util.Arrays;
 
 public class Board {
 	Tile[][] tiles = new Tile[3][3]; // tiles[y][x]
