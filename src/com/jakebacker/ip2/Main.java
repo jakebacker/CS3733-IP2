@@ -1,9 +1,13 @@
 package com.jakebacker.ip2;
 
 import com.jakebacker.ip2.boundary.NumbersPuzzleApp;
+import com.jakebacker.ip2.controller.ExitController;
 import com.jakebacker.ip2.model.Board;
 import com.jakebacker.ip2.model.Model;
 import com.jakebacker.ip2.model.Tile;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Main {
 	public static void main(String[] args) {
@@ -29,6 +33,13 @@ public class Main {
 		m.setBoard(board);
 
 		NumbersPuzzleApp app = new NumbersPuzzleApp(m);
+
+		app.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent we) {
+				new ExitController(app).exit();
+			}
+		});
 
 		app.setVisible(true);
 	}
