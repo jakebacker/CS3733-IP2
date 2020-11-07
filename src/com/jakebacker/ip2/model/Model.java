@@ -119,6 +119,18 @@ public class Model {
 		return moves;
 	}
 
+	public boolean isIsolated(Tile t) {
+		int x = t.getX();
+		int y = t.getY();
+
+		if (x-1 >= 0 && board.getTile(x-1, y).getValue() >= 0) return false;
+		if (x+1 <= 2 && board.getTile(x+1, y).getValue() >= 0) return false;
+		if (y-1 >= 0 && board.getTile(x, y-1).getValue() >= 0) return false;
+		if (y+1 <= 2 && board.getTile(x, y+1).getValue() >= 0) return false;
+
+		return true;
+	}
+
 	public boolean tryMove(MoveType dir) {
 		if (selectedTile == null) { return false; }
 
@@ -162,16 +174,22 @@ public class Model {
 	}
 
 	public boolean checkGameOver() {
+
+		boolean gameOver = true;
+
 		for (int y=0; y<3; y++) {
 			for (int x = 0; x < 3; x++) {
 				Tile t = board.getTile(x, y);
 
+				// Check for isolated tile
+				if (isIsolated(t)) return true;
+
 				List<MoveType> moves = availableMoves(t);
-				if (moves.size() > 0) return false; // If there's a valid move anywhere, it's not over
+				if (moves.size() > 0) gameOver = false; // If there's a valid move anywhere, it's not over
 			}
 		}
 
-		return true;
+		return gameOver;
 	}
 
 	public boolean checkGameWin() {

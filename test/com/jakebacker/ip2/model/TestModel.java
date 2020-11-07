@@ -242,6 +242,16 @@ public class TestModel {
 	}
 
 	@Test
+	public void testIsIsolated() {
+		assertFalse(model.isIsolated(board.getTile(0, 0)));
+
+		board.addTile(new Tile(-1), 1, 0);
+		board.addTile(new Tile(-1), 0, 1);
+
+		assertTrue(model.isIsolated(board.getTile(0, 0)));
+	}
+
+	@Test
 	public void testCheckGameWin() {
 
 		board.addTile(new Tile(-1), 0, 0);
